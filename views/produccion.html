@@ -1,0 +1,42 @@
+<div class="ui container segment">
+    <div class="ui grid">
+        <div class="four wide column">
+
+            <div class="ui secondary vertical menu">
+                <a href="#/produccion" class="active item">Articulos</a>
+                <a href="#/produccion/nuevoArticulo" class="item">Nuevo Articulo</a>
+            </div>
+
+        </div>
+        <div class="twelve wide column">
+            <div class="ui container">
+                <h1 class="ui block header center aligned">Articulos</h1>
+                <div class="ui segment">
+                    <table class="ui blue celled table">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Descripcion</th>
+                                    <th>Precio</th>
+                                    <th>Existencia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="articulos.length <= 0" class="ui active">
+                                    <td colspan="4" class="ui center aligned red header">Ningun Articulo</td>
+                                </tr>
+                                <tr ng-repeat="articulo in articulos">
+                                    <td class="ui red header">{{articulo.CODIGO}}</td>
+                                    <td>{{articulo.DESCRIPCION}}</td>
+                                    <td>{{articulo.PRECIO}}</td>
+                                    <td class="negative" ng-class="{{articulo.EXISTENCIA < 5}}: negative"> <span class="ui green header">{{articulo.EXISTENCIA}}</span></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                </div>
+        </div>
+    </div>
+</div>
+</div>

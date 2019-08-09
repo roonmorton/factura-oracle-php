@@ -1,0 +1,83 @@
+<div class="ui container">
+    <div class="ui block blue header center aligned">
+        <h2>Factura No: {{factura[0].CODIGO}}</h2>
+    </div>
+    <div class="ui segment">
+        <div class="ui inline field">    
+            <a class="ui green button" href="#/facturacion/listarFacturas">Mas Facturas</a>
+            <a class="ui yellow button" href="#/facturacion">Facturar</a>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui grid">
+            <div class="four wide column">
+                <div class="ui relaxed divided list">
+                    <div class="item">
+                        <div class="content">
+                            <span class="ui green header">Total</span>
+                            <div class="description">- <strong>Q. {{factura[0].MONTO}}</strong></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <span class="ui green header">Fecha</span>
+                            <div class="description">- <strong>{{factura[0].FECHA}}</strong></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <span class="ui green header">NIT</span>
+                            <div class="description">- <strong>{{factura[0].NIT}}</strong></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <span class="ui green header">Cliente</span>
+                            <div class="description">- <strong>{{factura[0].NOMBRE}}</strong></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <span class="ui green header">Direccion</span>
+                            <div class="description">- <strong>{{factura[0].DIRECCION}}</strong></div>
+                        </div>
+                    </div>
+                    
+                    <!--<div class="item">
+                        <div class="content">
+                            <span class="ui green header">Cliente</span>
+                            <div class="description">- <strong>Ronaldo Quevedo</strong></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <span class="ui green header">Tipo Pago</span>
+                            <div class="description">- <strong>Efectivo</strong></div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="twelve wide column">
+                <table class="ui table">
+                    <thead>
+                        <tr>
+                            <th class="ui center aligned"colspan="3">PRODUCTOS</th>
+                        </tr>
+                        <tr>
+                            <th>Descripcion - Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="articulo in factura">
+                            <td>{{articulo.DESCRIPCION}}</td>
+                            <td>{{"Q. "+articulo.PRECIO}}</td>
+                            <td>{{articulo.CANTIDAD}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

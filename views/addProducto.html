@@ -1,0 +1,40 @@
+<div class="ui container segment">
+    <div class="ui grid">
+        <div class="four wide column">
+
+            <div class="ui secondary vertical menu">
+                <a href="#/produccion" class="item">Articulos</a>
+                <a href="#/produccion/nuevoArticulo" class=" active item">Nuevo Articulo</a>
+            </div>
+
+        </div>
+        <div class="twelve wide column">
+            <div class="ui container">
+                <h1 class="ui block header center aligned">Agregar Articulo</h1>
+                <div class="ui segment">
+                    <form class="ui form" ng-submit="addArticulo()">
+                        <div class="ui fluid inline field">
+                            <label>Codigo:</label>
+                            <input type="text" autofocus placeholder="Codigo" ng-model="articulo.codigo" required>
+                        </div>
+                        <div class="ui fluid inline field">
+                            <label>Descripcion:</label>
+                            <textarea placeholder="Descripcion" ng-model="articulo.descripcion" required></textarea>
+                        </div>
+                        <div class="ui fluid inline field">
+                            <label>Precio: Q.</label>
+                            <input type="text" placeholder="Precio Q." ng-model="articulo.precio" required>
+                        </div>
+                        <div class="ui fluid inline field">
+                            <label>Existencia:</label>
+                            <input type="number" placeholder="Existencia" ng-model="articulo.existencia" required>
+                        </div>
+                        <div class="ui fluid field">
+                            <input class="ui fluid large green submit button" type="submit" value="Almacenar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

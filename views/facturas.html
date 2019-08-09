@@ -1,0 +1,47 @@
+<div class="ui container segment">
+    <div class="ui grid">
+        <div class="four wide column">
+
+               <div class="ui secondary vertical menu">
+                <a href="#/facturacion" class="item">Facturar</a>
+                <a href="#/facturacion/listarFacturas" class="active item">Listar Facturas</a> 
+                </div>
+
+        </div>
+        <div class="twelve wide column">
+            <div class="ui fluid container">
+            <h1 class="ui block header center aligned">Listar Facturas</h1>
+                <div class="ui segment">
+                    <table class="ui blue celled table">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="facturas.length <= 0">
+                                    <td colspan="4" class="ui center aligned">Ningun Factura</td>
+                                </tr>
+                                <tr ng-repeat="factura in facturas">
+                                    <td>
+                                        <a href="#/facturacion/factura/{{factura.CODIGO}}" class=" ui mini button">DETALLAR</a>
+                                        <span class="ui red header"> {{factura.CODIGO}}</span>
+                                    </td>
+                                    <td >{{factura.NOMBRE}}</td>
+                                    <td>{{factura.FECHA}}</td>
+                                    <td class="ui green header">{{"Q. "+factura.MONTO}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
