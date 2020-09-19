@@ -8,7 +8,7 @@ class dataBase{
     
     public function __construct(){
         if($this->con == null){
-            if(!($this->con = oci_connect("factura","2211"))){
+            if(!($this->con = oci_connect("ISERTEC","admin1342",'localhost/XE'))){
                 $this->estado = 0;
             }
         }

@@ -59,7 +59,7 @@ desc detalle_factura;
 desc articulo;
 
 
-/****************** Procedimiento Almacenado para Agragar un nuevo Articulo ****************/
+/****************** Procedimiento Almacenado para agregar un nuevo Articulo ****************/
 
 create or replace procedure nuevoArticulo
 (
@@ -85,16 +85,17 @@ create or replace procedure facturarSinCliente
   direccion in cliente.direccion%type,
   nit in cliente.nit%type,
   facCodigo in factura.codigo%type,
-  facfecha in factura.fecha%type,
   monto in factura.monto%type,    
-  pago in factura.pago%type,
+  pago in factura.pago%type
 )
 as
 begin
 insert into cliente values(nombre,direccion,nit);
-insert into factura values(facCodigo,facfecha,nit,monto,pago);
+insert into factura values(facCodigo,SYSDATE,nit,monto,pago);
 commit;
 end facturarSinCLiente;
+
+
 
 
 /*********** Procedimiento almacenado para agregar un factura con Cliente ******/
@@ -103,13 +104,12 @@ create or replace procedure facturarConCliente
 (
   nit in cliente.nit%type,
   facCodigo in factura.codigo%type,
-  facfecha in factura.fecha%type,
   pago in factura.pago%type,
   monto in factura.monto%type
 )
 as
 begin
-insert into factura values(facCodigo,facfecha,nit,monto,pago);
+insert into factura values(facCodigo,SYSDATE,nit,monto,pago);
 commit;
 end facturarConCLiente;
 
@@ -150,17 +150,17 @@ select * from cliente;
 select * from factura;
 select * from articulo;
 
-execute FacturarSinCliente('Ron Quevedo','Escuitla Guatemala','12345678','100','20/12/2015');
-execute FacturarSinCliente('Ron Quevedo','Escuitla Guatemala','12345677','101','20/12/2015');
-execute facturarConCliente('12345677','103','20/12/2015');
+CALL FacturarSinCliente('Ron Quevedo','Escuitla Guatemala','12345678','100', 6.0, 0);
+call FacturarSinCliente('Ron Quevedo','Escuitla Guatemala','12345677','101', 6.0, 0);
+call facturarConCliente('12345678','106', 0,6.0 );
 
-execute nuevoArticulo('110COC',6.00,'Coca cola lata 200ml',10);
-execute nuevoArticulo('112COC',6.00,'Coca cola Desechable 600ml',70);
+call nuevoArticulo('110COC',6.00,'Coca cola lata 200ml',10);
+call nuevoArticulo('112COC',6.00,'Coca cola Desechable 600ml',70);
 
-select * from articulo where descripcion like '%lata%' or descripcion like '%coca%';
 
 execute actualizarExistenciaArticulo('110COC',10);
 
+select * from articulo where descripcion like '%lata%' or descripcion like '%coca%';
 
 
 select f.codigo codigo, f.monto,f.fecha fecha, c.nit NIT, c.nombre nombre,c.direccion, a.descripcion, df.cantidad,a.precio from factura f

@@ -16,7 +16,6 @@ class meta{
     }
     public function facturaSinCliente(
         $codFactura,
-        $fecha,
         $nombreCliente, 
         $nitCliente, 
         $direccionCliente,
@@ -24,13 +23,12 @@ class meta{
         $monto,
         $articulos
     ){
-        $query = "BEGIN FacturarSinCliente(:nombre,:direccion,:nit,:facCodigo,:facfecha,:monto,:tipo); END;";
+        $query = "BEGIN FacturarSinCliente(:nombre,:direccion,:nit,:facCodigo,:monto,:tipo); END;";
         $this->conDB->parse($query);
         $this->conDB->vincular(':nombre',$nombreCliente);
         $this->conDB->vincular(':direccion',$direccionCliente);
         $this->conDB->vincular(':nit',$nitCliente);
         $this->conDB->vincular(':facCodigo',$codFactura);
-        $this->conDB->vincular(':facfecha',$fecha);
         $this->conDB->vincular(':monto',$monto);
         $this->conDB->vincular(':tipo',$tipoPago);
         $this->conDB->Ejecutar();
@@ -42,16 +40,14 @@ class meta{
     public function facturaConCliente(
         $nit,
         $codFac,
-        $fecha,
         $tipo,
         $monto,
         $articulos
     ){
-        $query = "BEGIN facturarConCliente(:nit,:facCodigo,:facfecha,:pago,:monto); END;";
+        $query = "BEGIN facturarConCliente(:nit,:facCodigo,:pago,:monto); END;";
         $this->conDB->parse($query);
         $this->conDB->vincular(':nit',$nit);
         $this->conDB->vincular(':facCodigo',$codFac);
-        $this->conDB->vincular(':facfecha',$fecha);
         $this->conDB->vincular(':pago',$tipo);
         $this->conDB->vincular(':monto',$monto);
         $this->conDB->Ejecutar();
@@ -61,11 +57,11 @@ class meta{
     }
     
     public function cliente($nit){
-        $query = "select * from cliente where nit = '$nit'";
+        $query = "select * from cliente where nit = '".$nit."'";
         $this->conDB->consulta($query);
         $d = $this->conDB->obtenerData();
         if(isset($d->NIT)){
-            return $d;
+            return true;
         }else
             return false;
     }

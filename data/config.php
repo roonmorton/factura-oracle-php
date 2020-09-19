@@ -1,5 +1,5 @@
 <?php
 define("DB","localhost/XE");
-define('USUARIO',"factura");
-define('PASS',"2211");
+define('USUARIO',"isertec");
+define('PASS',"admin1342");
 ?>
